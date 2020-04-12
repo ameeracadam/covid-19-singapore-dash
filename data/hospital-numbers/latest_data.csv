@@ -1,155 +1,155 @@
-Press Release Date,name,value
-20-Mar,ICU,16
-20-Mar,General Ward,238
-20-Mar,In Isolation,0
-20-Mar,Completed Isolation,0
-20-Mar,Discharged,131
-20-Mar,Demised,0
-20-Mar,Total,385
-21-Mar,ICU,14
-21-Mar,General Ward,276
-21-Mar,In Isolation,0
-21-Mar,Completed Isolation,0
-21-Mar,Discharged,140
-21-Mar,Demised,2
-21-Mar,Total,432
-22-Mar,ICU,14
-22-Mar,General Ward,295
-22-Mar,In Isolation,0
-22-Mar,Completed Isolation,0
-22-Mar,Discharged,144
-22-Mar,Demised,2
-22-Mar,Total,455
-23-Mar,ICU,15
-23-Mar,General Ward,340
-23-Mar,In Isolation,0
-23-Mar,Completed Isolation,0
-23-Mar,Discharged,152
-23-Mar,Demised,2
-23-Mar,Total,509
-24-Mar,ICU,17
-24-Mar,General Ward,384
-24-Mar,In Isolation,0
-24-Mar,Completed Isolation,0
-24-Mar,Discharged,155
-24-Mar,Demised,2
-24-Mar,Total,558
-25-Mar,ICU,17
-25-Mar,General Ward,388
-25-Mar,In Isolation,64
-25-Mar,Completed Isolation,0
-25-Mar,Discharged,160
-25-Mar,Demised,2
-25-Mar,Total,631
-26-Mar,ICU,18
-26-Mar,General Ward,404
-26-Mar,In Isolation,87
-26-Mar,Completed Isolation,0
-26-Mar,Discharged,172
-26-Mar,Demised,2
-26-Mar,Total,683
-27-Mar,ICU,17
-27-Mar,General Ward,415
-27-Mar,In Isolation,115
-27-Mar,Completed Isolation,4
-27-Mar,Discharged,179
-27-Mar,Demised,2
-27-Mar,Total,732
-28-Mar,ICU,19
-28-Mar,General Ward,401
-28-Mar,In Isolation,182
-28-Mar,Completed Isolation,14
-28-Mar,Discharged,184
-28-Mar,Demised,2
-28-Mar,Total,802
-29-Mar,ICU,19
-29-Mar,General Ward,404
-29-Mar,In Isolation,206
-29-Mar,Completed Isolation,18
-29-Mar,Discharged,194
-29-Mar,Demised,3
-29-Mar,Total,844
-30-Mar,ICU,19
-30-Mar,General Ward,401
-30-Mar,In Isolation,228
-30-Mar,Completed Isolation,28
-30-Mar,Discharged,200
-30-Mar,Demised,3
-30-Mar,Total,879
-31-Mar,ICU,22
-31-Mar,General Ward,401
-31-Mar,In Isolation,260
-31-Mar,Completed Isolation,32
-31-Mar,Discharged,208
-31-Mar,Demised,3
-31-Mar,Total,926
-1-Apr,ICU,24
-1-Apr,General Ward,437
-1-Apr,In Isolation,291
-1-Apr,Completed Isolation,34
-1-Apr,Discharged,211
-1-Apr,Demised,3
-1-Apr,Total,1000
-2-Apr,ICU,23
-2-Apr,General Ward,441
-2-Apr,In Isolation,315
-2-Apr,Completed Isolation,42
-2-Apr,Discharged,224
-2-Apr,Demised,4
-2-Apr,Total,1049
-3-Apr,ICU,25
-3-Apr,General Ward,448
-3-Apr,In Isolation,354
-3-Apr,Completed Isolation,47
-3-Apr,Discharged,235
-3-Apr,Demised,5
-3-Apr,Total,1114
-4-Apr,ICU,26
-4-Apr,General Ward,474
-4-Apr,In Isolation,386
-4-Apr,Completed Isolation,55
-4-Apr,Discharged,242
-4-Apr,Demised,6
-4-Apr,Total,1189
-5-Apr,ICU,25
-5-Apr,General Ward,544
-5-Apr,In Isolation,414
-5-Apr,Completed Isolation,68
-5-Apr,Discharged,252
-5-Apr,Demised,6
-5-Apr,Total,1309
-6-Apr,ICU,25
-6-Apr,General Ward,546
-6-Apr,In Isolation,454
-6-Apr,Completed Isolation,81
-6-Apr,Discharged,263
-6-Apr,Demised,6
-6-Apr,Total,1375
-7-Apr,ICU,29
-7-Apr,General Ward,598
-7-Apr,In Isolation,471
-7-Apr,Completed Isolation,101
-7-Apr,Discharged,276
-7-Apr,Demised,6
-7-Apr,Total,1481
-8-Apr,ICU,29
-8-Apr,General Ward,640
-8-Apr,In Isolation,542
-8-Apr,Completed Isolation,115
-8-Apr,Discharged,291
-8-Apr,Demised,6
-8-Apr,Total,1623
-9-Apr,ICU,29
-9-Apr,General Ward,855
-9-Apr,In Isolation,559
-9-Apr,Completed Isolation,146
-9-Apr,Discharged,315
-9-Apr,Demised,6
-9-Apr,Total,1910
-10-Apr,ICU,32
-10-Apr,General Ward,8435
-10-Apr,In Isolation,7346
-10-Apr,Completed Isolation,172
-10-Apr,Discharged,320
-10-Apr,Demised,7
-10-Apr,Total,2108
+Date,name,value
+20/3/2020,ICU,16
+20/3/2020,General Ward,238
+20/3/2020,In Isolation,0
+20/3/2020,Completed Isolation,0
+20/3/2020,Discharged,131
+20/3/2020,Demised,0
+20/3/2020,Total,385
+21/3/2020,ICU,14
+21/3/2020,General Ward,276
+21/3/2020,In Isolation,0
+21/3/2020,Completed Isolation,0
+21/3/2020,Discharged,140
+21/3/2020,Demised,2
+21/3/2020,Total,432
+22/3/2020,ICU,14
+22/3/2020,General Ward,295
+22/3/2020,In Isolation,0
+22/3/2020,Completed Isolation,0
+22/3/2020,Discharged,144
+22/3/2020,Demised,2
+22/3/2020,Total,455
+23/3/2020,ICU,15
+23/3/2020,General Ward,340
+23/3/2020,In Isolation,0
+23/3/2020,Completed Isolation,0
+23/3/2020,Discharged,152
+23/3/2020,Demised,2
+23/3/2020,Total,509
+24/3/2020,ICU,17
+24/3/2020,General Ward,384
+24/3/2020,In Isolation,0
+24/3/2020,Completed Isolation,0
+24/3/2020,Discharged,155
+24/3/2020,Demised,2
+24/3/2020,Total,558
+25/3/2020,ICU,17
+25/3/2020,General Ward,388
+25/3/2020,In Isolation,64
+25/3/2020,Completed Isolation,0
+25/3/2020,Discharged,160
+25/3/2020,Demised,2
+25/3/2020,Total,631
+26/3/2020,ICU,18
+26/3/2020,General Ward,404
+26/3/2020,In Isolation,87
+26/3/2020,Completed Isolation,0
+26/3/2020,Discharged,172
+26/3/2020,Demised,2
+26/3/2020,Total,683
+27/3/2020,ICU,17
+27/3/2020,General Ward,415
+27/3/2020,In Isolation,115
+27/3/2020,Completed Isolation,4
+27/3/2020,Discharged,179
+27/3/2020,Demised,2
+27/3/2020,Total,732
+28/3/2020,ICU,19
+28/3/2020,General Ward,401
+28/3/2020,In Isolation,182
+28/3/2020,Completed Isolation,14
+28/3/2020,Discharged,184
+28/3/2020,Demised,2
+28/3/2020,Total,802
+29/3/2020,ICU,19
+29/3/2020,General Ward,404
+29/3/2020,In Isolation,206
+29/3/2020,Completed Isolation,18
+29/3/2020,Discharged,194
+29/3/2020,Demised,3
+29/3/2020,Total,844
+30/3/2020,ICU,19
+30/3/2020,General Ward,401
+30/3/2020,In Isolation,228
+30/3/2020,Completed Isolation,28
+30/3/2020,Discharged,200
+30/3/2020,Demised,3
+30/3/2020,Total,879
+31/3/2020,ICU,22
+31/3/2020,General Ward,401
+31/3/2020,In Isolation,260
+31/3/2020,Completed Isolation,32
+31/3/2020,Discharged,208
+31/3/2020,Demised,3
+31/3/2020,Total,926
+1/4/2020,ICU,24
+1/4/2020,General Ward,437
+1/4/2020,In Isolation,291
+1/4/2020,Completed Isolation,34
+1/4/2020,Discharged,211
+1/4/2020,Demised,3
+1/4/2020,Total,1000
+2/4/2020,ICU,23
+2/4/2020,General Ward,441
+2/4/2020,In Isolation,315
+2/4/2020,Completed Isolation,42
+2/4/2020,Discharged,224
+2/4/2020,Demised,4
+2/4/2020,Total,1049
+3/4/2020,ICU,25
+3/4/2020,General Ward,448
+3/4/2020,In Isolation,354
+3/4/2020,Completed Isolation,47
+3/4/2020,Discharged,235
+3/4/2020,Demised,5
+3/4/2020,Total,1114
+4/4/2020,ICU,26
+4/4/2020,General Ward,474
+4/4/2020,In Isolation,386
+4/4/2020,Completed Isolation,55
+4/4/2020,Discharged,242
+4/4/2020,Demised,6
+4/4/2020,Total,1189
+5/4/2020,ICU,25
+5/4/2020,General Ward,544
+5/4/2020,In Isolation,414
+5/4/2020,Completed Isolation,68
+5/4/2020,Discharged,252
+5/4/2020,Demised,6
+5/4/2020,Total,1309
+6/4/2020,ICU,25
+6/4/2020,General Ward,546
+6/4/2020,In Isolation,454
+6/4/2020,Completed Isolation,81
+6/4/2020,Discharged,263
+6/4/2020,Demised,6
+6/4/2020,Total,1375
+7/4/2020,ICU,29
+7/4/2020,General Ward,598
+7/4/2020,In Isolation,471
+7/4/2020,Completed Isolation,101
+7/4/2020,Discharged,276
+7/4/2020,Demised,6
+7/4/2020,Total,1481
+8/4/2020,ICU,29
+8/4/2020,General Ward,640
+8/4/2020,In Isolation,542
+8/4/2020,Completed Isolation,115
+8/4/2020,Discharged,291
+8/4/2020,Demised,6
+8/4/2020,Total,1623
+9/4/2020,ICU,29
+9/4/2020,General Ward,855
+9/4/2020,In Isolation,559
+9/4/2020,Completed Isolation,146
+9/4/2020,Discharged,315
+9/4/2020,Demised,6
+9/4/2020,Total,1910
+10/4/2020,ICU,32
+10/4/2020,General Ward,8435
+10/4/2020,In Isolation,7346
+10/4/2020,Completed Isolation,172
+10/4/2020,Discharged,320
+10/4/2020,Demised,7
+10/4/2020,Total,2108
