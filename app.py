@@ -9,9 +9,12 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-# pandas for data load
+# data loads
 df = pd.read_csv('data/enigma-jhu/latest_data.csv')
 df['datetime'] = pd.to_datetime(df['last_update'])
+
+df_epidemic = pd.read_csv('data/total-cases-cumulative/latest_data.csv')
+df_epidemic['Date'] = pd.to_datetime(df_epidemic['Date'], dayfirst=True)
 
 # plots
 fig_subplots = make_subplots(
@@ -81,6 +84,30 @@ fig_subplots.append_trace(
 # set theming options
 fig_subplots.update_layout(template="plotly_white")
 
+# Figure 1.2 Epidemic Curve of COVID-19 Outbreak
+fig_epidemic = go.Figure()
+fig_epidemic.add_trace(
+    go.Bar(
+        x=df_epidemic['Date'],
+        y=df_epidemic['Value'][df_epidemic.Type == 'Local Unlinked'],
+        name='Local Unlinked',
+        marker_color = 'indianred'
+    )
+) 
+fig_epidemic.add_trace(
+    go.Bar(
+        x=df_epidemic['Date'],
+        y=df_epidemic['Value'][df_epidemic.Type == 'Local Linked'],
+        name='Local Linked',
+        marker_color = 'lightsalmon'
+    )
+) 
+fig_epidemic.update_layout(
+    title='Epidemic Curve',
+    template='plotly_white'
+    )
+
+
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
 
@@ -93,6 +120,11 @@ app.layout = html.Div(children=[
         id='Confirmed, Recovered and Deaths',
         figure=fig_subplots
     ),
+
+    dcc.Graph(
+        id='Epidemic Curve',
+        figure=fig_epidemic
+    )
 ])
 
 if __name__ == '__main__':
