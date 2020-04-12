@@ -296,8 +296,8 @@ fig_system.add_trace(
 )
 fig_system.add_trace(
     go.Scatter(
-        x=df_system['Date'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
-        y=df_system['Value'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
+        x=df_system[(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')].groupby('Date')['Value'].sum(),
+        y=df_system['Date'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
         name='Discharged',
         marker_color="rgb(44, 160, 44)",
         mode='lines+markers'
