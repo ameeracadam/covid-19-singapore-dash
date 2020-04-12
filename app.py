@@ -275,7 +275,9 @@ fig_system.add_trace(
         x=df_system['Date'][df_system.Type == 'ICU'],
         y=df_system['Value'][df_system.Type == 'ICU'],
         name='ICU',
-        marker_color = LOCAL_UNLINKED
+        marker_color = LOCAL_UNLINKED,
+        text=df_system['Value'][df_system.Type == 'ICU'],
+        textposition='auto'
     )
 )
 fig_system.add_trace(
@@ -283,7 +285,9 @@ fig_system.add_trace(
         x=df_system['Date'][df_system.Type == 'General Ward'],
         y=df_system['Value'][df_system.Type == 'General Ward'],
         name='General Ward',
-        marker_color=LOCAL_LINKED 
+        marker_color=LOCAL_LINKED,
+        text=df_system['Value'][df_system.Type == 'General Ward'],
+        textposition='auto'
     )
 )
 fig_system.add_trace(
@@ -291,24 +295,52 @@ fig_system.add_trace(
         x=df_system['Date'][df_system.Type == 'In Isolation'],
         y=df_system['Value'][df_system.Type == 'In Isolation'],
         name='In Isolation',
-        marker_color='rgb(242,200,15)'
+        marker_color='rgb(242,200,15)',
+        text=df_system['Value'][df_system.Type == 'In Isolation'],
+        textposition='auto'
     )
 )
-fig_system.add_trace(
-    go.Scatter(
-        x=df_system[(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')].groupby('Date')['Value'].sum(),
-        y=df_system['Date'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
-        name='Discharged',
-        marker_color="rgb(44, 160, 44)",
-        mode='lines+markers'
-    )
-)
+# fig_system.add_trace(
+#     go.Scatter(
+#         x=df_system[(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')].groupby('Date')['Value'].sum(),
+#         y=df_system['Date'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
+#         name='Discharged',
+#         marker_color="rgb(44, 160, 44)",
+#         mode='lines+markers'
+#     )
+# )
 fig_system.update_layout(
     title='Number of Cases in Hospitals and Community Isolation Facilities',
     template='plotly_white',
     barmode='stack'
     )
 
+fig_outofsystem=go.Figure()
+fig_outofsystem.add_trace(
+    go.Bar(
+        y=df_system['Value'][df_system.Type == 'Discharged'],
+        x=df_system['Date'][df_system.Type == 'Discharged'],
+        name='Discharged',
+        marker_color="rgb(44, 160, 44)",
+        text=df_system['Value'][df_system.Type == 'Discharged'],
+        textposition='auto'
+    )
+)
+fig_outofsystem.add_trace(
+    go.Bar(
+        y=df_system['Value'][df_system.Type == 'Demised'],
+        x=df_system['Date'][df_system.Type == 'Demised'],
+        name='Demised',
+        marker_color="Black",
+        text=df_system['Value'][df_system.Type == 'Demised'],
+        textposition='auto'
+    )
+)
+
+fig_outofsystem.update_layout(
+    title="Out of system",
+    template='plotly_white',
+)
 
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
@@ -346,6 +378,11 @@ app.layout = html.Div(children=[
     dcc.Graph(
         id='Cases in Healthcare System',
         figure=fig_system
+    ),
+
+    dcc.Graph(
+        id='Cases out of Healthcare System',
+        figure=fig_outofsystem
     )
 ])
 
