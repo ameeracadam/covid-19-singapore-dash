@@ -25,6 +25,9 @@ df_daysonset['Date'] = pd.to_datetime(df_daysonset['Date'], dayfirst=True)
 df_system = pd.read_csv('data/hospital-numbers/latest_data.csv')
 df_system['Date'] = pd.to_datetime(df_system['Date'], dayfirst=True)
 
+df_shn = pd.read_csv('data/shn/latest_data.csv')
+df_shn['Date'] = pd.to_datetime(df_shn['Date'], dayfirst=True)
+
 ##### PLOTS #####
 
 # COLORS
@@ -310,11 +313,12 @@ fig_system.add_trace(
 #     )
 # )
 fig_system.update_layout(
-    title='Number of Cases in Hospitals and Community Isolation Facilities',
+    title='In System',
     template='plotly_white',
     barmode='stack'
     )
 
+# Plot7: Out of system
 fig_outofsystem=go.Figure()
 fig_outofsystem.add_trace(
     go.Bar(
@@ -338,8 +342,38 @@ fig_outofsystem.add_trace(
 )
 
 fig_outofsystem.update_layout(
-    title="Out of system",
+    title="Out of System",
     template='plotly_white',
+)
+
+# Plot8: SHN
+fig_shn = go.Figure()
+fig_shn.add_trace(
+    go.Bar(
+        x=df_shn['Date'][df_shn.Type == 'Total SHN issued'],
+        y=df_shn['Value'][df_shn.Type == 'Total SHN issued'],
+        name='Total SHN issued',
+        marker_color = 'rgb(31, 119, 180)',
+        text=df_shn['Value'][df_shn.Type == 'Total SHN issued'],
+        textposition='auto'
+    )
+)
+fig_shn.add_trace(
+    go.Bar(
+        x=df_shn['Date'][df_shn.Type == 'Active SHN'],
+        y=df_shn['Value'][df_shn.Type == 'Active SHN'],
+        name='Active SHN',
+        marker_color='rgb(255, 127, 14)',
+        text=df_shn['Value'][df_shn.Type == 'Active SHN'],
+        textposition='auto'
+    )
+)
+
+
+fig_shn.update_layout(
+    title="Stay Home Notices (SHNs)",
+    template='plotly_white',
+    barmode='stack'
 )
 
 app.layout = html.Div(children=[
@@ -350,26 +384,35 @@ app.layout = html.Div(children=[
         style={'font-style':'italic'}
     ),
 
+    html.H3(children='Summary', style={'font-style':'bold'}),
+    html.Hr(),
+
     dcc.Graph(
         id='Gauge',
         figure=gauge
     ),
+    html.Hr(),
 
     #dcc.Graph(
     #    id='Confirmed, Recovered and Deaths',
     #    figure=fig_subplots
     #),
 
+    html.H3(children='Overall Number of Cases', style={'font-style':'bold'}),
+    html.Hr(),
     dcc.Graph(
         id='Epidemic Curve',
         figure=fig_epidemic
     ),
+    html.Hr(),
 
+    html.H3(children='Active Cases', style={'font-style':'bold'}),
+    html.Hr(),
     dcc.Graph(
         id='New Cases',
         figure=fig_newcases
     ),
-
+       
     dcc.Graph(
         id='Moving Averages',
         figure=fig_daysonset
@@ -379,11 +422,23 @@ app.layout = html.Div(children=[
         id='Cases in Healthcare System',
         figure=fig_system
     ),
+    html.Hr(),
 
+    html.H3(children='Inactive Cases', style={'font-style':'bold'}),
+    html.Hr(),
     dcc.Graph(
         id='Cases out of Healthcare System',
         figure=fig_outofsystem
-    )
+    ),
+    html.Hr(),
+
+    html.H3(children='Stay Home Notices (SHNs)', style={'font-style':'bold'}),
+    html.Hr(),
+    dcc.Graph(
+        id='SHN',
+        figure=fig_shn
+    ),
+    html.Hr()
 ])
 
 if __name__ == '__main__':
