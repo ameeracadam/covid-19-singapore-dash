@@ -380,7 +380,7 @@ app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
 
     html.Div(
-        children='by DSAID COVID-19 Data Team',
+        children='',
         style={'font-style':'italic'}
     ),
 
@@ -442,4 +442,4 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0')
