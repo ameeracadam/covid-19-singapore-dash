@@ -76,12 +76,16 @@ fig_subplots.append_trace(
         col = 2
 )
 
+# set theming options
+fig_subplots.update_layout(template="plotly_white")
+
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
 
-    html.Div(children='''
-        Situation Report in Singapore
-    '''),
+    html.Div(
+        children='by DSAID COVID-19 Data Team',
+        style={'font-style':'italic'}
+    ),
 
     dcc.Graph(
         id='Confirmed, Recovered and Deaths',
