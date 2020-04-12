@@ -19,12 +19,40 @@ df_epidemic['Date'] = pd.to_datetime(df_epidemic['Date'], dayfirst=True)
 df_newcases = pd.read_csv('data/total-cases-new/latest_data.csv')
 df_newcases['Date'] = pd.to_datetime(df_newcases['Date'], dayfirst=True)
 
-# plots
+##### PLOTS #####
+
+# Gauge subplot
+gauge = go.Figure()
+
+gauge.add_trace(go.Indicator(
+    value = 2108, # note: hardcoded for now
+    delta = {'reference': 1910, 'increasing.color':'red'},
+    mode = "number+delta",
+    title = {'text': 'Total Cases'},
+    domain = {'row':0, 'column':0}
+))
+
+gauge.add_trace(go.Indicator(
+    value = 492,
+    delta = {'reference': 460, 'increasing.color':'blue'},
+    mode = "number+delta",
+    title = {'text': 'Recovered'},
+    domain = {'row':0, 'column':1}
+))
+
+gauge.update_layout(
+    grid = {'rows':1, 'columns':2, 'pattern':'independent'},
+
+)
+
+# Confirmed vs Recovered / Deaths vs Recovered Subplot
 fig_subplots = make_subplots(
     rows=1, 
     cols=2,
     subplot_titles = ("Confirmed vs Recovered", "Deaths vs Recovered")
 )
+
+
 
 # Plot 1 - Confirmed vs Recovered
 fig_subplots.append_trace(
@@ -133,13 +161,17 @@ fig_newcases.update_layout(
     template='plotly_white'
     )
 
-
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
 
     html.Div(
         children='by DSAID COVID-19 Data Team',
         style={'font-style':'italic'}
+    ),
+
+    dcc.Graph(
+        id='Gauge',
+        figure=gauge
     ),
 
     dcc.Graph(
