@@ -34,7 +34,7 @@ gauge.add_trace(go.Indicator(
 
 gauge.add_trace(go.Indicator(
     value = 2108 - 492, # note: hardcoded for now
-    delta = {'reference': 198 - 32, 'increasing.color':'red'},
+    delta = {'reference': (1910 - 460), 'increasing.color':'orange'},
     mode = "number+delta",
     title = {'text': 'Active Cases'},
     domain = {'row':0, 'column':1}
@@ -42,7 +42,7 @@ gauge.add_trace(go.Indicator(
 
 gauge.add_trace(go.Indicator(
     value = 492,
-    delta = {'reference': 460, 'increasing.color':'orange'},
+    delta = {'reference': 460, 'increasing.color':'blue'},
     mode = "number+delta",
     title = {'text': 'Recovered'},
     domain = {'row':0, 'column':2}
