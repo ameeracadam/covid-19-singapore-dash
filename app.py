@@ -19,6 +19,9 @@ df_epidemic['Date'] = pd.to_datetime(df_epidemic['Date'], dayfirst=True)
 df_newcases = pd.read_csv('data/total-cases-new/latest_data.csv')
 df_newcases['Date'] = pd.to_datetime(df_newcases['Date'], dayfirst=True)
 
+df_daysonset = pd.read_csv('data/symptoms-onset-to-isolation/latest_data.csv')
+df_daysonset['Date'] = pd.to_datetime(df_daysonset['Date'], dayfirst=True)
+
 ##### PLOTS #####
 
 # Gauge subplot
@@ -177,6 +180,30 @@ fig_newcases.update_layout(
     template='plotly_white'
     )
 
+# Plot5: Average number of days from onset
+fig_daysonset = go.Figure()
+fig_daysonset.add_trace(
+    go.Bar(
+        x=df_daysonset['Date'],
+        y=df_daysonset['Value'][df_daysonset.Type == 'Daily Average'],
+        name='Daily Average',
+        marker_color = 'rgba(154, 154, 154, 0.4)', #alpha is the last value
+    )
+)
+fig_daysonset.add_trace(
+    go.Scatter(
+        x=df_daysonset['Date'],
+        y=df_daysonset['Value'][df_daysonset.Type == 'Moving Average (14-day)'],
+        name='Moving Average (14-day)',
+        marker_color="rgb(0, 0, 153)",
+        mode='lines+markers'
+    )
+)
+fig_daysonset.update_layout(
+    title='Average Number of Days from Onset of Symptoms to Isolation for Local Unlinked Cases In Each Day (by Press Release Date)',
+    template='plotly_white'
+    )
+
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
 
@@ -203,6 +230,11 @@ app.layout = html.Div(children=[
     dcc.Graph(
         id='New Cases',
         figure=fig_newcases
+    ),
+
+    dcc.Graph(
+        id='Moving Averages',
+        figure=fig_daysonset
     )
 ])
 
