@@ -372,8 +372,7 @@ fig_shn.add_trace(
 
 fig_shn.update_layout(
     title="Stay Home Notices (SHNs)",
-    template='plotly_white',
-    barmode='stack'
+    template='plotly_white'
 )
 
 app.layout = html.Div(children=[
