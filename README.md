@@ -8,3 +8,5 @@
 3. Install requirements: `pip install -r requirements.txt`
 4. Run the dashboard: `python app.py`
 5. Navigate to `localhost:8050` on your browser to see the dashboards. It will auto-reload the page every time you make a save.
+
+#### For new datasets: add a new folder to data/
