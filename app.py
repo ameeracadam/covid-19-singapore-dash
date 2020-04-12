@@ -22,7 +22,15 @@ df_newcases['Date'] = pd.to_datetime(df_newcases['Date'], dayfirst=True)
 df_daysonset = pd.read_csv('data/symptoms-onset-to-isolation/latest_data.csv')
 df_daysonset['Date'] = pd.to_datetime(df_daysonset['Date'], dayfirst=True)
 
+df_system = pd.read_csv('data/hospital-numbers/latest_data.csv')
+df_system['Date'] = pd.to_datetime(df_system['Date'], dayfirst=True)
+
 ##### PLOTS #####
+
+# COLORS
+IMPORTED = 'rgb(0, 95, 255)'
+LOCAL_LINKED = 'rgb(255, 127, 14)'
+LOCAL_UNLINKED = 'rgb(214, 39, 40)'
 
 # Gauge subplot
 gauge = go.Figure()
@@ -37,7 +45,7 @@ gauge.add_trace(go.Indicator(
 
 gauge.add_trace(go.Indicator(
     value = 2108 - 492, # note: hardcoded for now
-    delta = {'reference': (1910 - 460), 'increasing.color':'orange'},
+    delta = {'reference': (1910 - 460), 'increasing.color':'red'},
     mode = "number+delta",
     title = {'text': 'Active Cases'},
     domain = {'row':0, 'column':1}
@@ -59,8 +67,36 @@ gauge.add_trace(go.Indicator(
     domain = {'row':0, 'column':3}
 ))
 
+gauge.add_trace(go.Indicator(
+    value = 32,
+    delta = {'reference': 29, 'increasing.color':'red'},
+    mode = "number+delta",
+    title = {'text': 'ICU'},
+    domain = {'row':0, 'column':4}
+))
+
+gauge.add_trace(go.Indicator(
+    value = 843,
+    delta = {
+        'reference': 855, 
+        'increasing.color':'red', 
+        'decreasing.color':'green', 
+        'relative':False},
+    mode = "number+delta",
+    title = {'text': 'Warded'},
+    domain = {'row':0, 'column':5}
+))
+
+gauge.add_trace(go.Indicator(
+    value = 734,
+    delta = {'reference': 559, 'increasing.color':'red'},
+    mode = "number+delta",
+    title = {'text': 'In Isolation'},
+    domain = {'row':0, 'column':6}
+))
+
 gauge.update_layout(
-    grid = {'rows':1, 'columns':4, 'pattern':'independent'},
+    grid = {'rows':1, 'columns':7, 'pattern':'independent'},
 
 )
 
@@ -70,8 +106,6 @@ fig_subplots = make_subplots(
     cols=2,
     subplot_titles = ("Confirmed vs Recovered", "Deaths vs Recovered")
 )
-
-
 
 # Plot 1 - Confirmed vs Recovered
 fig_subplots.append_trace(
@@ -141,7 +175,9 @@ fig_epidemic.add_trace(
         x=df_epidemic['Date'],
         y=df_epidemic['Value'][df_epidemic.Type == 'Local Unlinked'],
         name='Local Unlinked',
-        marker_color = 'indianred'
+        marker_color = LOCAL_UNLINKED,
+        text=df_epidemic['Value'][df_epidemic.Type == 'Local Unlinked'],
+        textposition='auto'
     )
 ) 
 fig_epidemic.add_trace(
@@ -149,12 +185,25 @@ fig_epidemic.add_trace(
         x=df_epidemic['Date'],
         y=df_epidemic['Value'][df_epidemic.Type == 'Local Linked'],
         name='Local Linked',
-        marker_color = 'lightsalmon'
+        marker_color = LOCAL_LINKED,
+        text=df_epidemic['Value'][df_epidemic.Type == 'Local Linked'],
+        textposition='auto'
     )
-) 
+)
+fig_epidemic.add_trace(
+    go.Bar(
+        x=df_epidemic['Date'],
+        y=df_epidemic['Value'][df_epidemic.Type == 'Imported'],
+        name='Imported',
+        marker_color = IMPORTED,
+        text=df_epidemic['Value'][df_epidemic.Type == 'Imported'],
+        textposition='auto'
+    )
+)  
 fig_epidemic.update_layout(
-    title='Epidemic Curve',
-    template='plotly_white'
+    title='Total Cases',
+    template='plotly_white',
+    barmode='stack'
     )
 
 # Plot4: New cases
@@ -164,7 +213,9 @@ fig_newcases.add_trace(
         x=df_newcases['Date'],
         y=df_newcases['Value'][df_epidemic.Type == 'Local Unlinked'],
         name='Local Unlinked',
-        marker_color = 'indianred'
+        marker_color = LOCAL_UNLINKED,
+        text=df_newcases['Value'][df_epidemic.Type == 'Local Unlinked'],
+        textposition='auto'
     )
 ) 
 fig_newcases.add_trace(
@@ -172,12 +223,25 @@ fig_newcases.add_trace(
         x=df_newcases['Date'],
         y=df_newcases['Value'][df_epidemic.Type == 'Local Linked'],
         name='Local Linked',
-        marker_color = 'lightsalmon'
+        marker_color = LOCAL_LINKED,
+        text=df_newcases['Value'][df_epidemic.Type == 'Local Linked'],
+        textposition='auto'
     )
-) 
+)
+fig_newcases.add_trace(
+    go.Bar(
+        x=df_newcases['Date'],
+        y=df_newcases['Value'][df_epidemic.Type == 'Imported'],
+        name='Imported',
+        marker_color = IMPORTED,
+        text=df_newcases['Value'][df_epidemic.Type == 'Imported'],
+        textposition='auto'
+    )
+)  
 fig_newcases.update_layout(
     title='New Cases',
-    template='plotly_white'
+    template='plotly_white',
+    barmode='stack'
     )
 
 # Plot5: Average number of days from onset
@@ -187,7 +251,7 @@ fig_daysonset.add_trace(
         x=df_daysonset['Date'],
         y=df_daysonset['Value'][df_daysonset.Type == 'Daily Average'],
         name='Daily Average',
-        marker_color = 'rgba(154, 154, 154, 0.4)', #alpha is the last value
+        marker_color = 'rgba(0, 0, 153, 0.25)', #alpha is the last value
     )
 )
 fig_daysonset.add_trace(
@@ -204,6 +268,48 @@ fig_daysonset.update_layout(
     template='plotly_white'
     )
 
+# Plot6: In system vs Discharged
+fig_system = go.Figure()
+fig_system.add_trace(
+    go.Bar(
+        x=df_system['Date'],
+        y=df_system['value'][df_system.name == 'ICU'],
+        name='ICU',
+        marker_color = LOCAL_UNLINKED
+    )
+)
+fig_system.add_trace(
+    go.Bar(
+        x=df_system['Date'],
+        y=df_system['value'][df_system.name == 'General Ward'],
+        name='General Ward',
+        marker_color=LOCAL_LINKED 
+    )
+)
+fig_system.add_trace(
+    go.Bar(
+        x=df_system['Date'],
+        y=df_system['value'][df_system.name == 'In Isolation'],
+        name='In Isolation',
+        marker_color='rgb(242,200,15)'
+    )
+)
+# fig_system.add_trace(
+#     go.Scatter(
+#         x=df_system['Date'],
+#         y=df_system['value'][df_system.name == 'Discharged'],
+#         name='Discharged',
+#         marker_color="rgb(44, 160, 44)",
+#         mode='lines+markers'
+#     )
+# )
+fig_system.update_layout(
+    title='Number of Cases in Hospitals and Community Isolation Facilities',
+    template='plotly_white',
+    barmode='stack'
+    )
+
+
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
 
@@ -217,10 +323,10 @@ app.layout = html.Div(children=[
         figure=gauge
     ),
 
-    dcc.Graph(
-        id='Confirmed, Recovered and Deaths',
-        figure=fig_subplots
-    ),
+    #dcc.Graph(
+    #    id='Confirmed, Recovered and Deaths',
+    #    figure=fig_subplots
+    #),
 
     dcc.Graph(
         id='Epidemic Curve',
@@ -235,6 +341,11 @@ app.layout = html.Div(children=[
     dcc.Graph(
         id='Moving Averages',
         figure=fig_daysonset
+    ),
+
+    dcc.Graph(
+        id='Cases in Healthcare System',
+        figure=fig_system
     )
 ])
 
