@@ -53,7 +53,7 @@ gauge.add_trace(go.Indicator(
 
 gauge.add_trace(go.Indicator(
     value = 492,
-    delta = {'reference': 460, 'increasing.color':'blue'},
+    delta = {'reference': 460, 'increasing.color':'green'},
     mode = "number+delta",
     title = {'text': 'Recovered'},
     domain = {'row':0, 'column':2}
@@ -61,7 +61,7 @@ gauge.add_trace(go.Indicator(
 
 gauge.add_trace(go.Indicator(
     value = 7,
-    delta = {'reference': 6, 'increasing.color':'black'},
+    delta = {'reference': 6, 'increasing.color':'red'},
     mode = "number+delta",
     title = {'text': 'Deaths'},
     domain = {'row':0, 'column':3}
@@ -172,7 +172,7 @@ fig_subplots.update_layout(template="plotly_white")
 fig_epidemic = go.Figure()
 fig_epidemic.add_trace(
     go.Bar(
-        x=df_epidemic['Date'],
+        x=df_epidemic['Date'][df_epidemic.Type == 'Local Unlinked'],
         y=df_epidemic['Value'][df_epidemic.Type == 'Local Unlinked'],
         name='Local Unlinked',
         marker_color = LOCAL_UNLINKED,
@@ -182,7 +182,7 @@ fig_epidemic.add_trace(
 ) 
 fig_epidemic.add_trace(
     go.Bar(
-        x=df_epidemic['Date'],
+        x=df_epidemic['Date'][df_epidemic.Type == 'Local Linked'],
         y=df_epidemic['Value'][df_epidemic.Type == 'Local Linked'],
         name='Local Linked',
         marker_color = LOCAL_LINKED,
@@ -192,7 +192,7 @@ fig_epidemic.add_trace(
 )
 fig_epidemic.add_trace(
     go.Bar(
-        x=df_epidemic['Date'],
+        x=df_epidemic['Date'][df_epidemic.Type == 'Imported'],
         y=df_epidemic['Value'][df_epidemic.Type == 'Imported'],
         name='Imported',
         marker_color = IMPORTED,
@@ -210,7 +210,7 @@ fig_epidemic.update_layout(
 fig_newcases = go.Figure()
 fig_newcases.add_trace(
     go.Bar(
-        x=df_newcases['Date'],
+        x=df_newcases['Date'][df_epidemic.Type == 'Local Unlinked'],
         y=df_newcases['Value'][df_epidemic.Type == 'Local Unlinked'],
         name='Local Unlinked',
         marker_color = LOCAL_UNLINKED,
@@ -220,7 +220,7 @@ fig_newcases.add_trace(
 ) 
 fig_newcases.add_trace(
     go.Bar(
-        x=df_newcases['Date'],
+        x=df_newcases['Date'][df_epidemic.Type == 'Local Linked'],
         y=df_newcases['Value'][df_epidemic.Type == 'Local Linked'],
         name='Local Linked',
         marker_color = LOCAL_LINKED,
@@ -230,7 +230,7 @@ fig_newcases.add_trace(
 )
 fig_newcases.add_trace(
     go.Bar(
-        x=df_newcases['Date'],
+        x=df_newcases['Date'][df_epidemic.Type == 'Imported'],
         y=df_newcases['Value'][df_epidemic.Type == 'Imported'],
         name='Imported',
         marker_color = IMPORTED,
@@ -248,7 +248,7 @@ fig_newcases.update_layout(
 fig_daysonset = go.Figure()
 fig_daysonset.add_trace(
     go.Bar(
-        x=df_daysonset['Date'],
+        x=df_daysonset['Date'][df_daysonset.Type == 'Daily Average'],
         y=df_daysonset['Value'][df_daysonset.Type == 'Daily Average'],
         name='Daily Average',
         marker_color = 'rgba(0, 0, 153, 0.25)', #alpha is the last value
@@ -256,7 +256,7 @@ fig_daysonset.add_trace(
 )
 fig_daysonset.add_trace(
     go.Scatter(
-        x=df_daysonset['Date'],
+        x=df_daysonset['Date'][df_daysonset.Type == 'Moving Average (14-day)'],
         y=df_daysonset['Value'][df_daysonset.Type == 'Moving Average (14-day)'],
         name='Moving Average (14-day)',
         marker_color="rgb(0, 0, 153)",
@@ -272,37 +272,37 @@ fig_daysonset.update_layout(
 fig_system = go.Figure()
 fig_system.add_trace(
     go.Bar(
-        x=df_system['Date'],
-        y=df_system['value'][df_system.name == 'ICU'],
+        x=df_system['Date'][df_system.Type == 'ICU'],
+        y=df_system['Value'][df_system.Type == 'ICU'],
         name='ICU',
         marker_color = LOCAL_UNLINKED
     )
 )
 fig_system.add_trace(
     go.Bar(
-        x=df_system['Date'],
-        y=df_system['value'][df_system.name == 'General Ward'],
+        x=df_system['Date'][df_system.Type == 'General Ward'],
+        y=df_system['Value'][df_system.Type == 'General Ward'],
         name='General Ward',
         marker_color=LOCAL_LINKED 
     )
 )
 fig_system.add_trace(
     go.Bar(
-        x=df_system['Date'],
-        y=df_system['value'][df_system.name == 'In Isolation'],
+        x=df_system['Date'][df_system.Type == 'In Isolation'],
+        y=df_system['Value'][df_system.Type == 'In Isolation'],
         name='In Isolation',
         marker_color='rgb(242,200,15)'
     )
 )
-# fig_system.add_trace(
-#     go.Scatter(
-#         x=df_system['Date'],
-#         y=df_system['value'][df_system.name == 'Discharged'],
-#         name='Discharged',
-#         marker_color="rgb(44, 160, 44)",
-#         mode='lines+markers'
-#     )
-# )
+fig_system.add_trace(
+    go.Scatter(
+        x=df_system['Date'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
+        y=df_system['Value'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
+        name='Discharged',
+        marker_color="rgb(44, 160, 44)",
+        mode='lines+markers'
+    )
+)
 fig_system.update_layout(
     title='Number of Cases in Hospitals and Community Isolation Facilities',
     template='plotly_white',
