@@ -1,28 +1,28 @@
-Press Release Date,name,value
-1/4/2020,Active PUQ,5261
-1/4/2020,Inactive PUQ,9691
-1/4/2020,Total number served last 24hrs,495
-2/4/2020,Active PUQ,5007
-2/4/2020,Inactive PUQ,10435
-2/4/2020,Total number served last 24hrs,1016
-3/4/2020,Active PUQ,5984
-3/4/2020,Inactive PUQ,10926
-3/4/2020,Total number served last 24hrs,1049
-4/4/2020,Active PUQ,5995
-4/4/2020,Inactive PUQ,11350
-4/4/2020,Total number served last 24hrs,
-5/4/2020,Active PUQ,5618
-5/4/2020,Inactive PUQ,11995
-5/4/2020,Total number served last 24hrs,400
-6/4/2020,Active PUQ,4681
-6/4/2020,Inactive PUQ,13201
-6/4/2020,Total number served last 24hrs,766
-7/4/2020,Active PUQ,5665
-7/4/2020,Inactive PUQ,13779
-7/4/2020,Total number served last 24hrs,818
-8/4/2020,Active PUQ,5642
-8/4/2020,Inactive PUQ,14366
-8/4/2020,Total number served last 24hrs,725
-9/4/2020,Active PUQ,7723
-9/4/2020,Inactive PUQ,14951
-9/4/2020,Total number served last 24hrs,1138
+Date,Type,Value
+2/4/2020,Active PUQ,5261
+2/4/2020,Inactive PUQ,9691
+2/4/2020,Total number served last 24hrs,495
+3/4/2020,Active PUQ,5007
+3/4/2020,Inactive PUQ,10435
+3/4/2020,Total number served last 24hrs,1016
+4/4/2020,Active PUQ,5984
+4/4/2020,Inactive PUQ,10926
+4/4/2020,Total number served last 24hrs,1049
+5/4/2020,Active PUQ,5995
+5/4/2020,Inactive PUQ,11350
+5/4/2020,Total number served last 24hrs,
+6/4/2020,Active PUQ,5618
+6/4/2020,Inactive PUQ,11995
+6/4/2020,Total number served last 24hrs,400
+7/4/2020,Active PUQ,4681
+7/4/2020,Inactive PUQ,13201
+7/4/2020,Total number served last 24hrs,766
+8/4/2020,Active PUQ,5665
+8/4/2020,Inactive PUQ,13779
+8/4/2020,Total number served last 24hrs,818
+9/4/2020,Active PUQ,5642
+9/4/2020,Inactive PUQ,14366
+9/4/2020,Total number served last 24hrs,725
+10/4/2020,Active PUQ,7723
+10/4/2020,Inactive PUQ,14951
+10/4/2020,Total number served last 24hrs,1138
