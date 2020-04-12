@@ -42,10 +42,12 @@ fig_subplots.append_trace(
         name="Recovered",
         line={
             'color':'royalblue'
-            }
+            },
+        showlegend=False # because this is reported in the next graph
         ),
         row=1,
-        col=1
+        col=1,
+        
 )
 
 # Plot 2 - Deaths vs Recovered
