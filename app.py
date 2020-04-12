@@ -16,6 +16,9 @@ df['datetime'] = pd.to_datetime(df['last_update'])
 df_epidemic = pd.read_csv('data/total-cases-cumulative/latest_data.csv')
 df_epidemic['Date'] = pd.to_datetime(df_epidemic['Date'], dayfirst=True)
 
+df_newcases = pd.read_csv('data/total-cases-new/latest_data.csv')
+df_newcases['Date'] = pd.to_datetime(df_newcases['Date'], dayfirst=True)
+
 # plots
 fig_subplots = make_subplots(
     rows=1, 
@@ -84,7 +87,7 @@ fig_subplots.append_trace(
 # set theming options
 fig_subplots.update_layout(template="plotly_white")
 
-# Figure 1.2 Epidemic Curve of COVID-19 Outbreak
+# Plot3: Epidemic Curve of COVID-19 Outbreak
 fig_epidemic = go.Figure()
 fig_epidemic.add_trace(
     go.Bar(
@@ -107,6 +110,29 @@ fig_epidemic.update_layout(
     template='plotly_white'
     )
 
+# Plot4: New cases
+fig_newcases = go.Figure()
+fig_newcases.add_trace(
+    go.Bar(
+        x=df_newcases['Date'],
+        y=df_newcases['Value'][df_epidemic.Type == 'Local Unlinked'],
+        name='Local Unlinked',
+        marker_color = 'indianred'
+    )
+) 
+fig_newcases.add_trace(
+    go.Bar(
+        x=df_newcases['Date'],
+        y=df_newcases['Value'][df_epidemic.Type == 'Local Linked'],
+        name='Local Linked',
+        marker_color = 'lightsalmon'
+    )
+) 
+fig_newcases.update_layout(
+    title='New Cases',
+    template='plotly_white'
+    )
+
 
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
@@ -124,6 +150,11 @@ app.layout = html.Div(children=[
     dcc.Graph(
         id='Epidemic Curve',
         figure=fig_epidemic
+    ),
+
+    dcc.Graph(
+        id='New Cases',
+        figure=fig_newcases
     )
 ])
 
