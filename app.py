@@ -10,7 +10,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # pandas for data load
-df = pd.read_csv('data/enigma-jhu/apr-10-data.csv')
+df = pd.read_csv('data/enigma-jhu/latest_data.csv')
 df['datetime'] = pd.to_datetime(df['last_update'])
 
 # plots
