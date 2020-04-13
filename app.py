@@ -25,6 +25,9 @@ df_daysonset['Date'] = pd.to_datetime(df_daysonset['Date'], dayfirst=True)
 df_system = pd.read_csv('data/hospital-numbers/latest_data.csv')
 df_system['Date'] = pd.to_datetime(df_system['Date'], dayfirst=True)
 
+# as_index = False needed to get both Date and Value as columns
+grouped_df_system = df_system[['Date', 'Value']][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')].groupby('Date', as_index=False).sum() 
+
 df_shn = pd.read_csv('data/shn/latest_data.csv')
 df_shn['Date'] = pd.to_datetime(df_shn['Date'], dayfirst=True)
 
@@ -304,15 +307,15 @@ fig_system.add_trace(
         textposition='auto'
     )
 )
-# fig_system.add_trace(
-#     go.Scatter(
-#         x=df_system[(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')].groupby('Date')['Value'].sum(),
-#         y=df_system['Date'][(df_system.Type == 'Discharged') | (df_system.Type == 'Completed Isolation')],
-#         name='Discharged',
-#         marker_color="rgb(44, 160, 44)",
-#         mode='lines+markers'
-#     )
-# )
+fig_system.add_trace(
+    go.Scatter(
+        x=grouped_df_system['Date'],
+        y=grouped_df_system['Value'],
+        name='Discharged',
+        marker_color="rgb(44, 160, 44)",
+        mode='lines+markers'
+    )
+)
 fig_system.update_layout(
     title='In System',
     template='plotly_white',
@@ -375,6 +378,8 @@ fig_shn.update_layout(
     title="Stay Home Notices (SHNs)",
     template='plotly_white'
 )
+
+# fix 
 
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
