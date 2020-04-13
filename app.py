@@ -379,7 +379,8 @@ fig_shn.update_layout(
     template='plotly_white'
 )
 
-# fix 
+# fix scale of axis in SHN to have some headroom
+fig_shn.update_yaxes(range=[0, df_shn['Value'].max() + 10000])
 
 app.layout = html.Div(children=[
     html.H1(children='Ministry of Health COVID-19 Dashboard'),
